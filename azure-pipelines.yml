@@ -18,10 +18,5 @@ jobs:
     inputs:
       key: '"$(Agent.OS)" | recipe.cake'
       path: 'tools'
-  - task: Cake@2
-    inputs:
-      script: 'recipe.cake'
-      target: 'CI'
-      verbosity: 'Normal'
-      Bootstrap: true
-      Version: '0.38.5'
+  - powershell: ./build.ps1
+    displayName: 'Build'
