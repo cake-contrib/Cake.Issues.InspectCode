@@ -10,9 +10,13 @@ pr:
 - hotfix/*
 
 jobs:
-- job: Windows
+- job: Build
   pool:
-    vmImage: 'vs2017-win2016'
+    vmImage: 'windows-2022'
   steps:
+  - task: Cache@2
+    inputs:
+      key: '"$(Agent.OS)" | recipe.cake'
+      path: 'tools'
   - powershell: ./build.ps1
-    displayName: 'Cake Build'
+    displayName: 'Build'
